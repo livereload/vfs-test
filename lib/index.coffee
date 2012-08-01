@@ -54,6 +54,10 @@ class TestVFS
       @put path, data
       callback(null)
 
+  readFile: (path, encoding, callback) ->
+    process.nextTick =>
+      callback null, @files[path]
+
   watch: (path) ->
     new Monitor(this, path)
 
