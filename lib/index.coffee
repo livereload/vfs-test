@@ -61,6 +61,10 @@ class TestVFS
   watch: (path) ->
     new Monitor(this, path)
 
+  isSubpath: (superpath, subpath) ->
+    subpath = "#{subpath}/" unless subpath[subpath.length - 1] is '/'
+    return (subpath.length >= superpath.length) and (subpath.substr(0, superpath.length) == superpath)
+
   findFilesMatchingSuffixInSubtree: (root, suffix, bestSubtree, callback) ->
     suffix = PlaPath.normalize(suffix)
 
